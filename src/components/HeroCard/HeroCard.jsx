@@ -31,42 +31,52 @@ export const HeroCard = ({ superHero, onClick, reference }) => {
       <img src={superHero.image?.url} alt={superHero.name} height="250px" />
 
       <div className={styles.cardContent}>
-        <span>
-          <img src={swords} alt="" />
-          {superHero.powerstats?.combat !== "null"
-            ? superHero.powerstats?.combat
-            : 0}
-        </span>
-        <span>
-          <img src={armorChest} alt="" />
-          {superHero.powerstats?.durability !== "null"
-            ? superHero.powerstats?.durability
-            : 0}
-        </span>
-        <span>
-          <img src={strength} alt="" />{" "}
-          {superHero.powerstats?.strength !== "null"
-            ? superHero.powerstats?.strength
-            : 0}
-        </span>
-        <span>
-          <img src={power} alt="" />{" "}
-          {superHero.powerstats?.power !== "null"
-            ? superHero.powerstats?.power
-            : 0}
-        </span>
-        <span>
-          <img src={speed} alt="" />{" "}
-          {superHero.powerstats?.speed !== "null"
-            ? superHero.powerstats?.speed
-            : 0}
-        </span>
-        <span>
-          <img src={brain} alt="" />{" "}
-          {superHero.powerstats?.intelligence !== "null"
-            ? superHero.powerstats?.intelligence
-            : 0}
-        </span>
+        <div className={styles.cardContentLeft}>
+          <span>
+            <img src={swords} alt="" />
+            <p>
+              {superHero.powerstats?.combat !== "null"
+                ? superHero.powerstats?.combat
+                : 0}
+            </p>
+          </span>
+          <span>
+            <img src={armorChest} alt="" />
+            <p>
+              {superHero.powerstats?.durability !== "null"
+                ? superHero.powerstats?.durability
+                : 0}
+            </p>
+          </span>
+          <span>
+            <img src={strength} alt="" />{" "}
+            <p>
+              {superHero.powerstats?.strength !== "null"
+                ? superHero.powerstats?.strength
+                : 0}
+            </p>
+          </span>
+        </div>{" "}
+        <div className={styles.cardContentRight}>
+          <span>
+            <img src={power} alt="" />{" "}
+            {superHero.powerstats?.power !== "null"
+              ? superHero.powerstats?.power
+              : 0}
+          </span>
+          <span>
+            <img src={speed} alt="" />{" "}
+            {superHero.powerstats?.speed !== "null"
+              ? superHero.powerstats?.speed
+              : 0}
+          </span>
+          <span>
+            <img src={brain} alt="" />{" "}
+            {superHero.powerstats?.intelligence !== "null"
+              ? superHero.powerstats?.intelligence
+              : 0}
+          </span>
+        </div>
       </div>
     </div>
   );

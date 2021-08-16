@@ -30,7 +30,6 @@
   .modalContent {
     background-color: #fefefe;
     margin: 15% auto;
-    padding: 0 20px;
     border: 10px solid yellow;
     border-radius: 10px;
     width: 50vw;
@@ -40,8 +39,9 @@
 
     .close {
       color: #aaa;
-      float: right;
-      font-size: 28px;
+      position: absolute;
+      transform: translate(643px, -2px);
+      font-size: 50px;
       font-weight: bold;
 
       &:focus,
@@ -53,6 +53,8 @@
     }
 
     .superHeroData {
+      background-color: rgba(0, 0, 0, 0.5);
+      padding: 0 20px;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -60,17 +62,18 @@
 
       .characterSheet {
         background: red;
-        padding: 4vh 16vw;
+        padding: 4vh 11vw;
         border-radius: 0 0 25px 25px;
       }
 
       .superHeroInfo {
         display: flex;
-        padding: 32px 0;
-        background-color: rgba(0, 0, 0, 0.5);
         border-radius: 30px;
 
         .imageContainer {
+          img {
+            border-radius: 10px;
+          }
           p {
             background-color: gray;
             border-radius: 0px 36px 0px 0px;
@@ -89,8 +92,7 @@
         .superHeroPowerstats {
           display: flex;
           position: absolute;
-          transform: translate(-19px, 288px);
-          text-align: center;
+          transform: translate(-30px, 300px);
           padding: 0 20px;
 
           img {
@@ -99,10 +101,11 @@
           }
 
           span {
-            margin: 10px 0;
+            margin: 0 10px;
             display: flex;
+            align-items: center;
             justify-content: space-between;
-            width: 47px;
+            width: 56px;
           }
         }
 
@@ -125,10 +128,20 @@
   .modal {
     .modalContent {
       height: 100vh;
+      width: 90vw;
 
       .superHeroData {
         height: 80%;
         .superHeroInfo {
+          flex-direction: column;
+          justify-content: center;
+          .imageContainer {
+            p {
+              width: 166px;
+            }
+            img {
+            }
+          }
           .superHeroInfoContainer {
             height: 217px;
           }
