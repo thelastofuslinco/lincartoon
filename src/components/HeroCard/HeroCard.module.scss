@@ -3,14 +3,16 @@
   transition: 0.3s;
   margin: 20px;
   border: 10px solid black;
-  border-left: 60px solid black;
+  border-left: 65px solid black;
   border-radius: 10px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  background-color: black;
 
   img {
     width: 187.5px;
+    border-radius: 20px;
   }
 
   &:hover {
@@ -33,31 +35,35 @@
     display: flex;
     flex-direction: column;
     position: absolute;
-    transform: translate(-123px, 10px);
+    transform: translate(-130px, -16px);
     text-align: center;
 
     img {
-      height: 20px;
-      width: 20px;
+      height: 30px;
+      width: 30px;
     }
 
     span {
-      margin: 10px 0;
+      margin: 8px 0;
       display: flex;
       justify-content: space-between;
       width: 47px;
+      align-items: center;
     }
   }
 }
 
 .marvelBorder {
   border-color: #f0131e;
+  background-color: #f0131e;
 }
 
 .dcBorder {
   border-color: #0476f2;
+  background-color: #0476f2;
 }
 
 .nbcBorder {
   border-color: #e1ac26;
+  background-color: #e1ac26;
 }

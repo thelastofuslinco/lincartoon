@@ -17,89 +17,109 @@ export const HeroModal = ({ superHero, heroModalIsTrue, onClick }) => {
         <span className={styles.close} onClick={onClick}>
           &times;
         </span>
-        <div>
-          <span>ficha de personagem</span>
-          <p>name: {superHero.name}</p>
-          <p>
-            <img
-              src={superHero.image.url}
-              alt={superHero.name}
-              height="250px"
-            />
-          </p>
-          <div>
-            biography: //////////////
-            <p>
-              aliases:
-              {superHero.biography.aliases.map((data) => (
-                <div>{data}</div>
-              ))}
-            </p>
-            <p>alignment: {superHero.biography.alignment}</p>
-            <p>alter-egos: {superHero.biography["alter-egos"]}</p>
-            <p>first-appearance: {superHero.biography["first-appearance"]}</p>
-            <p>full-name: {superHero.biography["full-name"]}</p>
-            <p>place-of-birth: {superHero.biography["place-of-birth"]}</p>
-            <p>publisher: {superHero.biography.publisher}</p>
-          </div>
-          <div>
-            connections: /////////////////
-            <p>
-              group-affiliation: {superHero.connections["group-affiliation"]}
-            </p>
-            <p>relatives: {superHero.connections.relatives}</p>
-          </div>
-          <div>
-            work: ////////////////
-            <p>base: {superHero.work.base}</p>
-            <p>occupation: {superHero.work.occupation}</p>
-          </div>
-          <div className={styles.superHeroPowerstats}>
-            <span>
-              <img src={swords} alt="" />
-              {superHero.powerstats.combat !== "null"
-                ? superHero.powerstats.combat
-                : 0}
-            </span>
-            <span>
-              <img src={armorChest} alt="" />
-              {superHero.powerstats.durability !== "null"
-                ? superHero.powerstats.durability
-                : 0}
-            </span>
-            <span>
-              <img src={strength} alt="" />{" "}
-              {superHero.powerstats.strength !== "null"
-                ? superHero.powerstats.strength
-                : 0}
-            </span>
-            <span>
-              <img src={power} alt="" />{" "}
-              {superHero.powerstats.power !== "null"
-                ? superHero.powerstats.power
-                : 0}
-            </span>
-            <span>
-              <img src={speed} alt="" />{" "}
-              {superHero.powerstats.speed !== "null"
-                ? superHero.powerstats.speed
-                : 0}
-            </span>
-            <span>
-              <img src={brain} alt="" />{" "}
-              {superHero.powerstats.intelligence !== "null"
-                ? superHero.powerstats.intelligence
-                : 0}
-            </span>
-          </div>
-          <div>
-            appearance: ////////////////
-            <p>eye-color: {superHero.appearance["eye-color"]}</p>
-            <p>gender: {superHero.appearance.gender}</p>
-            <p>hair-color: {superHero.appearance["hair-color"]}</p>
-            <p>race: {superHero.appearance.race}</p>
-            <p>height: {superHero.appearance.height[1]}</p>
-            <p>weight: {superHero.appearance.weight[1]}</p>
+        <div className={styles.superHeroData}>
+          <span className={styles.characterSheet}>ficha de personagem</span>
+          <div className={styles.superHeroInfo}>
+            <div className={styles.imageContainer}>
+              <p>{superHero.name}</p>
+
+              <img
+                src={superHero.image.url}
+                alt={superHero.name}
+                height="250px"
+              />
+            </div>
+            <div className={styles.superHeroPowerstats}>
+              <span>
+                <img src={swords} alt="" />
+                {superHero.powerstats.combat !== "null"
+                  ? superHero.powerstats.combat
+                  : 0}
+              </span>
+              <span>
+                <img src={armorChest} alt="" />
+                {superHero.powerstats.durability !== "null"
+                  ? superHero.powerstats.durability
+                  : 0}
+              </span>
+              <span>
+                <img src={strength} alt="" />{" "}
+                {superHero.powerstats.strength !== "null"
+                  ? superHero.powerstats.strength
+                  : 0}
+              </span>
+              <span>
+                <img src={power} alt="" />{" "}
+                {superHero.powerstats.power !== "null"
+                  ? superHero.powerstats.power
+                  : 0}
+              </span>
+              <span>
+                <img src={speed} alt="" />{" "}
+                {superHero.powerstats.speed !== "null"
+                  ? superHero.powerstats.speed
+                  : 0}
+              </span>
+              <span>
+                <img src={brain} alt="" />{" "}
+                {superHero.powerstats.intelligence !== "null"
+                  ? superHero.powerstats.intelligence
+                  : 0}
+              </span>
+            </div>
+
+            <div className={styles.superHeroInfoContainer}>
+              <div>
+                <p>
+                  apelidos{" "}
+                  {superHero.biography.aliases.map((data) => (
+                    <span>{data}</span>
+                  ))}
+                </p>
+                <p>alinhamento do {superHero.biography.alignment}</p>
+                <p>
+                  Alter egos{" "}
+                  {superHero.biography["alter-egos"] !== "No alter egos found."
+                    ? superHero.biography["alter-egos"]
+                    : "não possui alter egos"}
+                </p>
+                <p>
+                  Primeira aparição {superHero.biography["first-appearance"]}
+                </p>
+                <p>Seu nome completo {superHero.biography["full-name"]}</p>
+                <p>
+                  Local de nascimento{" "}
+                  {superHero.biography["place-of-birth"] !== "-"
+                    ? superHero.biography["place-of-birth"]
+                    : "desconhecido"}
+                </p>
+                <p>
+                  Universo{" "}
+                  {superHero.biography.publisher !== "null"
+                    ? `da ${superHero.biography.publisher}`
+                    : "desconhecido"}
+                </p>
+              </div>
+              <div>
+                <p>
+                  group-affiliation:{" "}
+                  {superHero.connections["group-affiliation"]}
+                </p>
+                <p>relatives: {superHero.connections.relatives}</p>
+              </div>
+              <div>
+                <p>base: {superHero.work.base}</p>
+                <p>occupation: {superHero.work.occupation}</p>
+              </div>
+              <div>
+                <p>eye-color: {superHero.appearance["eye-color"]}</p>
+                <p>gender: {superHero.appearance.gender}</p>
+                <p>hair-color: {superHero.appearance["hair-color"]}</p>
+                <p>race: {superHero.appearance.race}</p>
+                <p>height: {superHero.appearance.height[1]}</p>
+                <p>weight: {superHero.appearance.weight[1]}</p>
+              </div>
+            </div>
           </div>
         </div>
       </div>

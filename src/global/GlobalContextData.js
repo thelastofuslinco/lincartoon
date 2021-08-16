@@ -6,34 +6,34 @@ const GlobalStateContext = createContext();
 export function GlobalState({ children }) {
   // Dados do aplicativo
   const [superHeroArray, setSuperHeroArray] = useState([]);
+  const [searchedHeroes, setSearchedHeroes] = useState([]);
 
   // Puxa os dados dos super heroi
   const getSuperHeroData = () => {
-    for (let i = 1; i <= 10; i++) {
+    for (let i = 1; i <= 730; i++) {
       const future = Api(i);
-      future.then((response) => setSuperHeroArray((arr) => [...arr, response]));
+      future.then((response) => {
+        if (response === null) {
+          return;
+        }
+        setSuperHeroArray((arr) => [...arr, response]);
+      });
     }
   };
 
-  const sortByName = () => {
-    console.log(superHeroArray);
-    const copy = superHeroArray.sort((a, b) => a.id - b.id).reverse();
-    setSuperHeroArray(copy);
-    console.log(copy);
-  };
-
   const searchHero = (searchData) => {
-    const future = Api("search" + searchData);
-    future.then((response) => setSuperHeroArray(response));
+    const future = Api("search/" + searchData);
+    future.then((response) => {
+      if (response === null) {
+        return;
+      }
+      setSearchedHeroes(response.results);
+    });
   };
 
   useEffect(() => {
     getSuperHeroData();
   }, []);
-
-  useEffect(() => {
-    console.log(superHeroArray);
-  }, [superHeroArray]);
 
   return (
     <GlobalStateContext.Provider
@@ -42,8 +42,8 @@ export function GlobalState({ children }) {
         setSuperHeroArray,
         getSuperHeroData,
         searchHero,
-
-        sortByName,
+        searchedHeroes,
+        setSearchedHeroes,
       }}
     >
       {children}
@@ -59,8 +59,8 @@ export const useGlobalContext = () => {
     setSuperHeroArray,
     getSuperHeroData,
     searchHero,
-
-    sortByName,
+    searchedHeroes,
+    setSearchedHeroes,
   } = context;
 
   return {
@@ -68,7 +68,7 @@ export const useGlobalContext = () => {
     setSuperHeroArray,
     getSuperHeroData,
     searchHero,
-
-    sortByName,
+    searchedHeroes,
+    setSearchedHeroes,
   };
 };

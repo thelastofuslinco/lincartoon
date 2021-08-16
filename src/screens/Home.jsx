@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { HeroCard } from "../components/HeroCard/HeroCard";
 import { useGlobalContext } from "../global/GlobalContextData";
 import styles from "../assets/scss/Home.module.scss";
@@ -7,11 +7,18 @@ import { Button } from "../components/Button/Button";
 import { HeroModal } from "../components/HeroModal/HeroModal";
 
 export const Home = () => {
-  const { superHeroArray, searchHero, sortByName } = useGlobalContext();
+  const { superHeroArray, searchHero, searchedHeroes, setSearchedHeroes } =
+    useGlobalContext();
 
   const [inputValue, setInputValue] = useState("");
   const [heroModal, setheroModal] = useState(false);
   const [superHero, setSuperHero] = useState({});
+
+  useEffect(() => {
+    if (inputValue === "") {
+      setSearchedHeroes([]);
+    }
+  }, [inputValue, setSearchedHeroes]);
 
   return (
     <div className="container">
@@ -22,6 +29,9 @@ export const Home = () => {
           <Input
             type={"text"}
             value={inputValue}
+            onKeyDown={(event) =>
+              event.key === "Enter" && searchHero(inputValue)
+            }
             onChange={(event) => setInputValue(event.target.value)}
           />
           <Button
@@ -31,14 +41,7 @@ export const Home = () => {
             }}
           />
         </div>
-        <div>
-          <Button
-            text={"ordena por nome"}
-            onClick={() => {
-              sortByName();
-            }}
-          />
-        </div>
+        <div></div>
       </header>
       <main className={styles.mainContainer}>
         <div className={styles.cardContainer}>
@@ -50,7 +53,22 @@ export const Home = () => {
             />
           )}
 
-          {superHeroArray.length &&
+          {searchedHeroes.length > 0 && inputValue !== "" ? (
+            searchedHeroes.map((superHero) => (
+              <HeroCard
+                key={superHero.id}
+                superHero={superHero}
+                onClick={() => {
+                  setSuperHero(superHero);
+                  setheroModal(true);
+                }}
+              />
+            ))
+          ) : (
+            <div></div>
+          )}
+
+          {inputValue === "" ? (
             superHeroArray.map((superHero) => (
               <HeroCard
                 key={superHero.id}
@@ -60,7 +78,16 @@ export const Home = () => {
                   setheroModal(true);
                 }}
               />
-            ))}
+            ))
+          ) : (
+            <div></div>
+          )}
+
+          {inputValue === "" && superHeroArray.length <= 700 ? (
+            <div>Loading...</div>
+          ) : (
+            <div></div>
+          )}
         </div>
       </main>
       <footer className={styles.footerContainer}>

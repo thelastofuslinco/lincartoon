@@ -10,10 +10,13 @@ import strength from "../../assets/images/strength.png";
 export const HeroCard = ({ superHero, onClick, reference }) => {
   //palette colors
   const marvel =
-    superHero.biography.publisher === "Marvel Comics" && styles.marvelBorder;
-  const dc = superHero.biography.publisher === "DC Comics" && styles.dcBorder;
+    (superHero.biography?.publisher ?? " ") === "Marvel Comics" &&
+    styles.marvelBorder;
+  const dc =
+    (superHero.biography?.publisher ?? " ") === "DC Comics" && styles.dcBorder;
   const nbc =
-    superHero.biography.publisher === "NBC - Heroes" && styles.nbcBorder;
+    (superHero.biography?.publisher ?? " ") === "NBC - Heroes" &&
+    styles.nbcBorder;
 
   return (
     <div
@@ -25,43 +28,43 @@ export const HeroCard = ({ superHero, onClick, reference }) => {
         <span>{superHero.name}</span>
       </div>
 
-      <img src={superHero.image.url} alt={superHero.name} height="250px" />
+      <img src={superHero.image?.url} alt={superHero.name} height="250px" />
 
       <div className={styles.cardContent}>
         <span>
           <img src={swords} alt="" />
-          {superHero.powerstats.combat !== "null"
-            ? superHero.powerstats.combat
+          {superHero.powerstats?.combat !== "null"
+            ? superHero.powerstats?.combat
             : 0}
         </span>
         <span>
           <img src={armorChest} alt="" />
-          {superHero.powerstats.durability !== "null"
-            ? superHero.powerstats.durability
+          {superHero.powerstats?.durability !== "null"
+            ? superHero.powerstats?.durability
             : 0}
         </span>
         <span>
           <img src={strength} alt="" />{" "}
-          {superHero.powerstats.strength !== "null"
-            ? superHero.powerstats.strength
+          {superHero.powerstats?.strength !== "null"
+            ? superHero.powerstats?.strength
             : 0}
         </span>
         <span>
           <img src={power} alt="" />{" "}
-          {superHero.powerstats.power !== "null"
-            ? superHero.powerstats.power
+          {superHero.powerstats?.power !== "null"
+            ? superHero.powerstats?.power
             : 0}
         </span>
         <span>
           <img src={speed} alt="" />{" "}
-          {superHero.powerstats.speed !== "null"
-            ? superHero.powerstats.speed
+          {superHero.powerstats?.speed !== "null"
+            ? superHero.powerstats?.speed
             : 0}
         </span>
         <span>
           <img src={brain} alt="" />{" "}
-          {superHero.powerstats.intelligence !== "null"
-            ? superHero.powerstats.intelligence
+          {superHero.powerstats?.intelligence !== "null"
+            ? superHero.powerstats?.intelligence
             : 0}
         </span>
       </div>
