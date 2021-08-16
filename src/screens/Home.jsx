@@ -68,7 +68,7 @@ export const Home = () => {
             <div></div>
           )}
 
-          {inputValue === "" ? (
+          {inputValue === "" && superHeroArray.length >= 730 ? (
             superHeroArray.map((superHero) => (
               <HeroCard
                 key={superHero.id}
@@ -84,7 +84,7 @@ export const Home = () => {
           )}
 
           {inputValue === "" && superHeroArray.length < 731 ? (
-            <div>Loading...</div>
+            <div>Loading... {superHeroArray.length}</div>
           ) : (
             <div> </div>
           )}
