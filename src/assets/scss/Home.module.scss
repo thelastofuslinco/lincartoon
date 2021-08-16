@@ -1,0 +1,64 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+.headerContainer {
+  display: flex;
+  justify-content: space-between;
+  padding: 40px;
+  background-color: red;
+
+  div {
+    display: flex;
+  }
+}
+
+.mainContainer {
+  min-height: 100vh;
+}
+
+.cardContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 0;
+}
+
+.footerContainer {
+  color: white;
+  font-size: 33px;
+  font-weight: 700;
+  display: flex;
+  justify-content: flex-end;
+  padding: 40px;
+  background-color: #0476f2;
+}
+
+// Media querys
+
+@media (max-width: 804px) {
+  .headerContainer {
+    flex-direction: column;
+    align-items: center;
+    div {
+      align-items: center;
+      flex-direction: column;
+      input {
+        width: 150px;
+        margin: 10px 0;
+      }
+      button {
+        width: 260px;
+        margin: 10px 0;
+      }
+    }
+  }
+
+  .mainContainer {
+    div {
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+}

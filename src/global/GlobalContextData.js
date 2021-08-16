@@ -1,34 +1,49 @@
 import React, { useState, createContext, useContext, useEffect } from "react";
-import { Api } from "../utils/Api";
+import { Api } from "../services/Api";
 
 const GlobalStateContext = createContext();
 
 export function GlobalState({ children }) {
   // Dados do aplicativo
-  const [superHero, setSuperHero] = useState(null);
-  const [superHeroArray, setSuperHeroArray] = useState(null);
+  const [superHeroArray, setSuperHeroArray] = useState([]);
+  const [searchedHeroes, setSearchedHeroes] = useState([]);
 
   // Puxa os dados dos super heroi
-  const getSuperHeroData = (id) => {
-    const future = Api(id);
-    future.then((response) => setSuperHero(response));
+  const getSuperHeroData = () => {
+    for (let i = 1; i <= 730; i++) {
+      const future = Api(i);
+      future.then((response) => {
+        if (response === null) {
+          return;
+        }
+        setSuperHeroArray((arr) => [...arr, response]);
+      });
+    }
   };
 
   const searchHero = (searchData) => {
-    const future = Api("search" + searchData);
-    future.then((response) => setSuperHeroArray(response));
+    const future = Api("search/" + searchData);
+    future.then((response) => {
+      if (response === null) {
+        return;
+      }
+      setSearchedHeroes(response.results);
+    });
   };
 
   useEffect(() => {
-    console.log(superHeroArray);
-  }, [superHeroArray]);
+    getSuperHeroData();
+  }, []);
 
   return (
     <GlobalStateContext.Provider
       value={{
-        superHero,
+        superHeroArray,
+        setSuperHeroArray,
         getSuperHeroData,
         searchHero,
+        searchedHeroes,
+        setSearchedHeroes,
       }}
     >
       {children}
@@ -39,11 +54,21 @@ export function GlobalState({ children }) {
 export const useGlobalContext = () => {
   const context = useContext(GlobalStateContext);
 
-  const { superHero, getSuperHeroData, searchHero } = context;
-
-  return {
-    superHero,
+  const {
+    superHeroArray,
+    setSuperHeroArray,
     getSuperHeroData,
     searchHero,
+    searchedHeroes,
+    setSearchedHeroes,
+  } = context;
+
+  return {
+    superHeroArray,
+    setSuperHeroArray,
+    getSuperHeroData,
+    searchHero,
+    searchedHeroes,
+    setSearchedHeroes,
   };
 };
