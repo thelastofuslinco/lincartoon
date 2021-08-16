@@ -10,7 +10,7 @@ export function GlobalState({ children }) {
 
   // Puxa os dados dos super heroi
   const getSuperHeroData = () => {
-    for (let i = 1; i <= 730; i++) {
+    for (let i = 1; i <= 10; i++) {
       const future = Api(i);
       future.then((response) => {
         if (response === null) {
