@@ -1,47 +1,46 @@
-import React, { useEffect, useState } from "react";
-import { HeroCard } from "../components/HeroCard/HeroCard";
-import { useGlobalContext } from "../global/GlobalContextData";
-import styles from "../assets/scss/Home.module.scss";
-import { Input } from "../components/Input/Input";
-import { Button } from "../components/Button/Button";
-import { HeroModal } from "../components/HeroModal/HeroModal";
+import React, { useEffect, useState } from 'react'
+import { HeroCard } from '../components/HeroCard/HeroCard'
+import { useGlobalContext } from '../global/GlobalContextData'
+import styles from '../assets/scss/Home.module.scss'
+import { Input } from '../components/Input/Input'
+import { Button } from '../components/Button/Button'
+import { HeroModal } from '../components/HeroModal/HeroModal'
 
 export const Home = () => {
   const { superHeroArray, searchHero, searchedHeroes, setSearchedHeroes } =
-    useGlobalContext();
+    useGlobalContext()
 
-  const [inputValue, setInputValue] = useState("");
-  const [heroModal, setheroModal] = useState(false);
-  const [superHero, setSuperHero] = useState({});
+  const [inputValue, setInputValue] = useState('')
+  const [heroModal, setheroModal] = useState(false)
+  const [superHero, setSuperHero] = useState({})
 
   useEffect(() => {
-    if (inputValue === "") {
-      setSearchedHeroes([]);
+    if (inputValue === '') {
+      setSearchedHeroes([])
     }
-  }, [inputValue, setSearchedHeroes]);
+  }, [inputValue, setSearchedHeroes])
 
   return (
-    <div className="container">
+    <div className='container'>
       <header className={styles.headerContainer}>
         <h1>Lincartoon</h1>
 
         <div>
           <Input
-            type={"text"}
+            type='text'
             value={inputValue}
             onKeyDown={(event) =>
-              event.key === "Enter" && searchHero(inputValue)
-            }
+              event.key === 'Enter' && searchHero(inputValue)}
             onChange={(event) => setInputValue(event.target.value)}
           />
           <Button
-            text={"Buscar"}
+            text='Buscar'
             onClick={() => {
-              searchHero(inputValue);
+              searchHero(inputValue)
             }}
           />
         </div>
-        <div></div>
+        <div />
       </header>
       <main className={styles.mainContainer}>
         <div className={styles.cardContainer}>
@@ -53,37 +52,37 @@ export const Home = () => {
             />
           )}
 
-          {searchedHeroes.length > 0 && inputValue !== "" ? (
+          {searchedHeroes.length > 0 && inputValue !== '' ? (
             searchedHeroes.map((superHero) => (
               <HeroCard
                 key={superHero.id}
                 superHero={superHero}
                 onClick={() => {
-                  setSuperHero(superHero);
-                  setheroModal(true);
+                  setSuperHero(superHero)
+                  setheroModal(true)
                 }}
               />
             ))
           ) : (
-            <div></div>
+            <div />
           )}
 
-          {inputValue === "" && superHeroArray.length >= 730 ? (
+          {inputValue === '' && superHeroArray.length >= 730 ? (
             superHeroArray.map((superHero) => (
               <HeroCard
                 key={superHero.id}
                 superHero={superHero}
                 onClick={() => {
-                  setSuperHero(superHero);
-                  setheroModal(true);
+                  setSuperHero(superHero)
+                  setheroModal(true)
                 }}
               />
             ))
           ) : (
-            <div></div>
+            <div />
           )}
 
-          {inputValue === "" && superHeroArray.length < 731 ? (
+          {inputValue === '' && superHeroArray.length < 731 ? (
             <div>Loading... {superHeroArray.length}</div>
           ) : (
             <div> </div>
@@ -94,5 +93,5 @@ export const Home = () => {
         ©Copyright 2021 - thelastofuslinco
       </footer>
     </div>
-  );
-};
+  )
+}
