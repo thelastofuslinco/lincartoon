@@ -86,7 +86,7 @@ export const Home = () => {
           {inputValue === "" && superHeroArray.length < 731 ? (
             <div>Loading...</div>
           ) : (
-            <div></div>
+            <div> </div>
           )}
         </div>
       </main>
