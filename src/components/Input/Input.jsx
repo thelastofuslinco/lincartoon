@@ -1,5 +1,5 @@
-import React from "react";
-import styles from "./Input.module.scss";
+import React from 'react'
+import styles from './Input.module.scss'
 
 export const Input = ({ type, value, onChange, onKeyDown }) => {
   return (
@@ -11,5 +11,5 @@ export const Input = ({ type, value, onChange, onKeyDown }) => {
         onKeyDown={onKeyDown}
       />
     </div>
-  );
-};
+  )
+}

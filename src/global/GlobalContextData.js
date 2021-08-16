@@ -1,39 +1,40 @@
-import React, { useState, createContext, useContext, useEffect } from "react";
-import { Api } from "../services/Api";
+import React, { useState, createContext, useContext, useEffect } from 'react'
+import { Api } from '../services/Api'
 
-const GlobalStateContext = createContext();
+const GlobalStateContext = createContext()
 
-export function GlobalState({ children }) {
+export function GlobalState ({ children }) {
   // Dados do aplicativo
-  const [superHeroArray, setSuperHeroArray] = useState([]);
-  const [searchedHeroes, setSearchedHeroes] = useState([]);
+  const [superHeroArray, setSuperHeroArray] = useState([])
+  const [searchedHeroes, setSearchedHeroes] = useState([])
 
   // Puxa os dados dos super heroi
   const getSuperHeroData = () => {
     for (let i = 1; i <= 731; i++) {
-      const future = Api(i);
+      const future = Api(i)
       future.then((response) => {
         if (response === null) {
-          return;
+          return
         }
-        setSuperHeroArray((arr) => [...arr, response]);
-      });
+        setSuperHeroArray((arr) => [...arr, response])
+      })
     }
-  };
+  }
 
   const searchHero = (searchData) => {
-    const future = Api("search/" + searchData);
+    const future = Api('search/' + searchData)
     future.then((response) => {
       if (response === null) {
-        return;
+        setSearchedHeroes([])
+        return
       }
-      setSearchedHeroes(response.results);
-    });
-  };
+      setSearchedHeroes(response.results)
+    })
+  }
 
   useEffect(() => {
-    getSuperHeroData();
-  }, []);
+    getSuperHeroData()
+  }, [])
 
   return (
     <GlobalStateContext.Provider
@@ -43,16 +44,16 @@ export function GlobalState({ children }) {
         getSuperHeroData,
         searchHero,
         searchedHeroes,
-        setSearchedHeroes,
+        setSearchedHeroes
       }}
     >
       {children}
     </GlobalStateContext.Provider>
-  );
+  )
 }
 
 export const useGlobalContext = () => {
-  const context = useContext(GlobalStateContext);
+  const context = useContext(GlobalStateContext)
 
   const {
     superHeroArray,
@@ -60,8 +61,8 @@ export const useGlobalContext = () => {
     getSuperHeroData,
     searchHero,
     searchedHeroes,
-    setSearchedHeroes,
-  } = context;
+    setSearchedHeroes
+  } = context
 
   return {
     superHeroArray,
@@ -69,6 +70,6 @@ export const useGlobalContext = () => {
     getSuperHeroData,
     searchHero,
     searchedHeroes,
-    setSearchedHeroes,
-  };
-};
+    setSearchedHeroes
+  }
+}
