@@ -14,11 +14,11 @@ export const HeroModal = ({ superHero, heroModalIsTrue, onClick }) => {
   return (
     <div className={styles.modal + " " + modalState}>
       <div className={styles.modalContent}>
-        <span className={styles.close} onClick={onClick}>
-          &times;
-        </span>
         <div className={styles.superHeroData}>
-          <span className={styles.characterSheet}>ficha de personagem</span>
+          <span className={styles.characterSheet}>Ficha de personagem</span>
+          <span className={styles.close} onClick={onClick}>
+            &times;
+          </span>
           <div className={styles.superHeroInfo}>
             <div className={styles.imageContainer}>
               <p>{superHero.name}</p>
