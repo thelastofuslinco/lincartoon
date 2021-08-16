@@ -83,7 +83,7 @@ export const Home = () => {
             <div></div>
           )}
 
-          {inputValue === "" && superHeroArray.length < 10 ? (
+          {inputValue === "" && superHeroArray.length < 731 ? (
             <div>Loading...</div>
           ) : (
             <div></div>
